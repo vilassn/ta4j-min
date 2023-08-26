@@ -23,17 +23,17 @@
  */
 package ta4jexamples;
 
-import org.ta4j.core.AnalysisCriterion;
-import org.ta4j.core.AnalysisCriterion.PositionFilter;
+//import org.ta4j.core.AnalysisCriterion;
+//import org.ta4j.core.AnalysisCriterion.PositionFilter;
 import org.ta4j.core.backtest.BarSeriesManager;
 import org.ta4j.core.BarSeries;
 import org.ta4j.core.BaseStrategy;
 import org.ta4j.core.Rule;
 import org.ta4j.core.TradingRecord;
-import org.ta4j.core.criteria.PositionsRatioCriterion;
-import org.ta4j.core.criteria.ReturnOverMaxDrawdownCriterion;
-import org.ta4j.core.criteria.VersusEnterAndHoldCriterion;
-import org.ta4j.core.criteria.pnl.ReturnCriterion;
+//import org.ta4j.core.criteria.PositionsRatioCriterion;
+//import org.ta4j.core.criteria.ReturnOverMaxDrawdownCriterion;
+//import org.ta4j.core.criteria.VersusEnterAndHoldCriterion;
+//import org.ta4j.core.criteria.pnl.ReturnCriterion;
 import org.ta4j.core.indicators.SMAIndicator;
 import org.ta4j.core.indicators.helpers.ClosePriceIndicator;
 import org.ta4j.core.num.Num;
@@ -41,8 +41,7 @@ import org.ta4j.core.rules.CrossedDownIndicatorRule;
 import org.ta4j.core.rules.CrossedUpIndicatorRule;
 import org.ta4j.core.rules.StopGainRule;
 import org.ta4j.core.rules.StopLossRule;
-
-import ta4jexamples.loaders.CsvTradesLoader;
+import ta4jexamples.loaders.CsvBarsLoader;
 
 /**
  * Quickstart for ta4j.
@@ -53,8 +52,9 @@ public class Quickstart {
 
     public static void main(String[] args) {
 
+        String csvFile = "appleinc_bars_from_20130101_usd.csv";
         // Getting a bar series (from any provider: CSV, web service, etc.)
-        BarSeries series = CsvTradesLoader.loadBitstampSeries();
+        BarSeries series = CsvBarsLoader.loadCsvSeries(csvFile);
 
         // Getting the close price of the bars
         Num firstClosePrice = series.getBar(0).getClosePrice();
@@ -98,17 +98,17 @@ public class Quickstart {
 
         // Analysis
 
-        // Getting the winning positions ratio
-        AnalysisCriterion winningPositionsRatio = new PositionsRatioCriterion(PositionFilter.PROFIT);
-        System.out.println("Winning positions ratio: " + winningPositionsRatio.calculate(series, tradingRecord));
-        // Getting a risk-reward ratio
-        AnalysisCriterion romad = new ReturnOverMaxDrawdownCriterion();
-        System.out.println("Return over Max Drawdown: " + romad.calculate(series, tradingRecord));
-
-        // Total return of our strategy vs total return of a buy-and-hold strategy
-        AnalysisCriterion vsBuyAndHold = new VersusEnterAndHoldCriterion(new ReturnCriterion());
-        System.out.println("Our return vs buy-and-hold return: " + vsBuyAndHold.calculate(series, tradingRecord));
-
-        // Your turn!
+//        // Getting the winning positions ratio
+//        AnalysisCriterion winningPositionsRatio = new PositionsRatioCriterion(PositionFilter.PROFIT);
+//        System.out.println("Winning positions ratio: " + winningPositionsRatio.calculate(series, tradingRecord));
+//        // Getting a risk-reward ratio
+//        AnalysisCriterion romad = new ReturnOverMaxDrawdownCriterion();
+//        System.out.println("Return over Max Drawdown: " + romad.calculate(series, tradingRecord));
+//
+//        // Total return of our strategy vs total return of a buy-and-hold strategy
+//        AnalysisCriterion vsBuyAndHold = new VersusEnterAndHoldCriterion(new ReturnCriterion());
+//        System.out.println("Our return vs buy-and-hold return: " + vsBuyAndHold.calculate(series, tradingRecord));
+//
+//        // Your turn!
     }
 }
